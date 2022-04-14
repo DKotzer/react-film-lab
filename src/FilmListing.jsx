@@ -11,10 +11,9 @@ export default class FilmListing extends Component {
   }
 
   render() {
-    const allFilms = this.state.filmList.map((film, index) => {
-      return <FilmRow film={film} key={index} />;
+    let allFilms = this.props.film_list.map((title, index) => {
+      return <FilmRow film={this.props.film_list[index]} id={index} />;
     });
-
     console.log("book_list test", allFilms);
     console.log(allFilms[0]);
     console.log(this.props.film_list[0].title);
