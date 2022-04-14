@@ -16,12 +16,16 @@ export default class FilmRow extends Component {
           className='film-row'
           onClick={() => this.handleDetailsClick(this.props.film.title)}
         >
-          <FilmPoster posterurl={posterurl}></FilmPoster>
+          <div className='poster'>
+            <FilmPoster posterurl={posterurl}></FilmPoster>
+          </div>
           <div className='film-summary'>
             <h1>{this.props.film.title}</h1>
             <p>{date.getFullYear()}</p>
+            <div className='fave-icon'>
+              <Fave></Fave>
+            </div>
           </div>
-          <Fave></Fave>
         </div>
       </div>
     );
