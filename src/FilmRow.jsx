@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FilmPoster from "./FilmPoster";
 import Fave from "./Fave";
+import "./App.css";
+
 export default class FilmRow extends Component {
   handleDetailsClick(film) {
     console.log("fetching details for", film);
@@ -23,7 +25,7 @@ export default class FilmRow extends Component {
             <h1>{this.props.film.title}</h1>
             <p>{date.getFullYear()}</p>
             <div className='fave-icon'>
-              <Fave></Fave>
+              <Fave onFaveToggle={this.props.onFaveToggle} isFave={this.props.isFave}></Fave>
             </div>
           </div>
         </div>

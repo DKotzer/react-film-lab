@@ -26,8 +26,15 @@ export default class FilmListing extends Component {
   }
 
   render() {
-    let allFilms = this.props.film_list.map((film, index) => {
-      return <FilmRow film={film} key={index} />;
+    const allFilms = this.props.film_list.map((film) => {
+      return (
+        <FilmRow
+          film={film}
+          key={film.id}
+          onFaveToggle={() => this.props.onFaveToggle(film)}
+          isFave={this.props.faves.includes(film)}
+        />
+      );
     });
 
     return (
@@ -50,7 +57,7 @@ export default class FilmListing extends Component {
             onClick={() => this.handleFilterClick("faves")}
           >
             FAVES
-            <span className='section-count'>0</span>
+            <span className='section-count'>{this.props.faves.length}</span>
           </div>
         </div>
 

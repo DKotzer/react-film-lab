@@ -4,21 +4,30 @@ export default class Fave extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isFave: false,
-    };
+    this.state = {};
   }
 
   handleClick(e) {
-    this.setState({
-      isFave: !this.state.isFave,
-    });
-    console.log("Handle Click executed");
     e.stopPropagation();
+    console.log("Handling Fave click!");
+
+    // Add this line. You'll call the function passed through props
+    this.props.onFaveToggle();
+
+    // Delete the `setState` line. You no longer track state here
+    // this.setState({isFave: !this.state.isFave})
   }
 
+  // handleClick(e) {
+  //   this.setState({
+  //     isFave: !this.state.isFave,
+  //   });
+  //   console.log("Handle Click executed");
+  //   e.stopPropagation();
+  // }
+
   render() {
-    const isFave = this.state.isFave ? "remove_from_queue" : "add_to_queue";
+    const isFave = this.props.isFave ? "remove_from_queue" : "add_to_queue";
     return (
       <div className={`film-list-filter ${isFave}`}>
         <p
