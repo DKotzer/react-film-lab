@@ -9,19 +9,36 @@ export default class FilmListing extends Component {
       filmList: props.films,
     };
   }
+  handleFilterClick(filter) {
+    console.log(filter);
+  }
 
   render() {
-    let allFilms = this.props.film_list.map((title, index) => {
-      return <FilmRow film={this.props.film_list[index]} id={index} />;
+    let allFilms = this.props.film_list.map((film, index) => {
+      return <FilmRow film={film} key={index} />;
     });
-    console.log("book_list test", allFilms);
-    console.log(allFilms[0]);
-    console.log(this.props.film_list[0].title);
+
     return (
       <div className='film-list'>
         <h1 className='section-title'>FILMS</h1>
-        {/* <h1>{this.props.film_list[0].title}</h1> */}
-        <h1>{allFilms}</h1>
+        <div className='film-list-filters'>
+          <div
+            className='film-list-filter'
+            onClick={() => this.handleFilterClick("all")}
+          >
+            ALL
+            <span className='section-count'>{this.props.film_list.length}</span>
+          </div>
+          <div
+            className='film-list-filter'
+            onClick={() => this.handleFilterClick("faves")}
+          >
+            FAVES
+            <span className='section-count'>0</span>
+          </div>
+        </div>
+
+        {allFilms}
       </div>
     );
   }
