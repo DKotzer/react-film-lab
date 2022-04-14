@@ -45,7 +45,7 @@ export default class FilmListing extends Component {
           </div>
           <div
             className={`film-list-filter ${
-              this.state.filter === "faves" ? "is-active" : ""
+              this.state.filter === "all" ? "is-active" : ""
             }`}
             onClick={() => this.handleFilterClick("faves")}
           >
