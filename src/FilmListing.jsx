@@ -6,35 +6,37 @@ export default class FilmListing extends Component {
     super(props);
 
     this.state = {
-      filmList: props.films,
+      filmList: this.props.film_list,
       filter: "all",
     };
   }
   handleFilterClick(filter) {
     if (filter === "faves") {
       console.log("faves");
+      console.log(this.state.filmList);
       this.setState({
         filter: "faves",
+        filmList: this.props.faves,
       });
     }
     if (filter === "all") {
       console.log("all");
       this.setState({
         filter: "all",
+        filmList: this.props.film_list,
       });
     }
   }
 
   render() {
-    const allFilms = this.props.film_list.map((film) => {
+    const allFilms = this.state.filmList.map((film) => {
       return (
         <FilmRow
           film={film}
           key={film.id}
           onFaveToggle={() => this.props.onFaveToggle(film)}
           isFave={this.props.faves.includes(film)}
-          onDetailToggle={()=> this.props.onDetailToggle(film)}
-          
+          onDetailToggle={() => this.props.onDetailToggle(film)}
         />
       );
     });

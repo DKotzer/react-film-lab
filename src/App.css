@@ -41,7 +41,7 @@
   justify-self: flex-end;
 } */
 
-.fave-icon {
+/* .fave-icon {
   display: flex;
 
   justify-self: flex-end;
@@ -51,7 +51,7 @@
   top: -70px;
   padding: 0;
   margin: 0;
-}
+} */
 
 .film-summary {
   display: flex;
