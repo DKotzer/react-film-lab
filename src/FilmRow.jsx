@@ -4,8 +4,14 @@ import Fave from "./Fave";
 import "./App.css";
 
 export default class FilmRow extends Component {
-  handleDetailsClick(film) {
-    console.log("fetching details for", film);
+  // handleDetailsClick(film) {
+  //   console.log("fetching details for", film);
+  // }
+
+  handleDetailClick(e) {
+    e.stopPropagation();
+    console.log("Handling Detail click!");
+    this.props.onDetailToggle();
   }
 
   render() {
@@ -14,10 +20,7 @@ export default class FilmRow extends Component {
     let date = new Date(this.props.film.release_date);
     return (
       <div>
-        <div
-          className='film-row'
-          onClick={() => this.handleDetailsClick(this.props.film.title)}
-        >
+        <div className='film-row' onClick={(e) => this.handleDetailClick(e)}>
           <div className='poster'>
             <FilmPoster posterurl={posterurl}></FilmPoster>
           </div>
@@ -25,7 +28,10 @@ export default class FilmRow extends Component {
             <h1>{this.props.film.title}</h1>
             <p>{date.getFullYear()}</p>
             <div className='fave-icon'>
-              <Fave onFaveToggle={this.props.onFaveToggle} isFave={this.props.isFave}></Fave>
+              <Fave
+                onFaveToggle={this.props.onFaveToggle}
+                isFave={this.props.isFave}
+              ></Fave>
             </div>
           </div>
         </div>
