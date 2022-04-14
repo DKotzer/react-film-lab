@@ -7,10 +7,22 @@ export default class FilmListing extends Component {
 
     this.state = {
       filmList: props.films,
+      filter: "all",
     };
   }
   handleFilterClick(filter) {
-    console.log(filter);
+    if (filter === "faves") {
+      console.log("faves");
+      this.setState({
+        filter: "faves",
+      });
+    }
+    if (filter === "all") {
+      console.log("all");
+      this.setState({
+        filter: "all",
+      });
+    }
   }
 
   render() {
@@ -23,14 +35,18 @@ export default class FilmListing extends Component {
         <h1 className='section-title'>FILMS</h1>
         <div className='film-list-filters'>
           <div
-            className='film-list-filter'
+            className={`film-list-filter ${
+              this.state.filter === "all" ? "is-active" : ""
+            }`}
             onClick={() => this.handleFilterClick("all")}
           >
             ALL
             <span className='section-count'>{this.props.film_list.length}</span>
           </div>
           <div
-            className='film-list-filter'
+            className={`film-list-filter ${
+              this.state.filter === "faves" ? "is-active" : ""
+            }`}
             onClick={() => this.handleFilterClick("faves")}
           >
             FAVES

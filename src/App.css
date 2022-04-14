@@ -31,3 +31,12 @@
     transform: rotate(360deg);
   }
 }
+
+/* .film-list-filter {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  align-self: flex-end;
+  justify-self: flex-end;
+} */

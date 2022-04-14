@@ -20,8 +20,11 @@ export default class Fave extends Component {
   render() {
     const isFave = this.state.isFave ? "remove_from_queue" : "add_to_queue";
     return (
-      <div className={isFave, "film-row-fave"}>
-        <p onClick={(e) => this.handleClick(e)} className='material-icons'>
+      <div className={`film-list-filter ${isFave}`}>
+        <p
+          onClick={(e) => this.handleClick(e)}
+          className={`material-icons ${isFave}`}
+        >
           {isFave}
         </p>
       </div>

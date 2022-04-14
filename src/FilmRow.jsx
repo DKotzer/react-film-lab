@@ -11,17 +11,18 @@ export default class FilmRow extends Component {
     let posterurl = url_base + this.props.film.poster_path;
     let date = new Date(this.props.film.release_date);
     return (
-      <div
-        className='film-row'
-        onClick={() => this.handleDetailsClick(this.props.film.title)}
-      >
-        <FilmPoster posterurl={posterurl}></FilmPoster>
-
-        <div className='film-summary'>
-          <h1>{this.props.film.title}</h1>
-          <p>{date.getFullYear()}</p>
+      <div>
+        <div
+          className='film-row'
+          onClick={() => this.handleDetailsClick(this.props.film.title)}
+        >
+          <FilmPoster posterurl={posterurl}></FilmPoster>
+          <div className='film-summary'>
+            <h1>{this.props.film.title}</h1>
+            <p>{date.getFullYear()}</p>
+          </div>
+          <Fave></Fave>
         </div>
-        <Fave></Fave>
       </div>
     );
   }
