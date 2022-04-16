@@ -3,11 +3,13 @@ import "./App.css";
 import FilmDetails from "./FilmDetails";
 import FilmListing from "./FilmListing";
 import TMDB from "./TMDB";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleFaveToggle = this.handleFaveToggle.bind(this); //no idea what this does
+    this.handleFaveToggle = this.handleFaveToggle.bind(this);
+    this.handleDetailsClick = this.handleDetailsClick.bind(this); //no idea what this does
 
     this.state = {
       films: TMDB.films,
@@ -29,7 +31,16 @@ class App extends Component {
   }
 
   handleDetailsClick(film) {
-    console.log("fetching details for", film);
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`;
+
+    axios({
+      method: "GET",
+      url: url,
+    }).then((response) => {
+      console.log(response); // take a look at what you get back!
+      console.log(`Fetching details for ${film.title}`);
+      this.setState( {current: response.data} );
+    });
   }
 
   render() {

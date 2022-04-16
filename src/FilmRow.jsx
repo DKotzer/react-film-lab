@@ -39,3 +39,6 @@ export default class FilmRow extends Component {
     );
   }
 }
+
+//get help refactoring film row
+

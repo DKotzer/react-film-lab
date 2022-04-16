@@ -10,12 +10,7 @@ export default class Fave extends Component {
   handleClick(e) {
     e.stopPropagation();
     console.log("Handling Fave click!");
-
-    // Add this line. You'll call the function passed through props
     this.props.onFaveToggle();
-
-    // Delete the `setState` line. You no longer track state here
-    // this.setState({isFave: !this.state.isFave})
   }
 
   // handleClick(e) {
