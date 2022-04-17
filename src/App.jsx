@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleFaveToggle = this.handleFaveToggle.bind(this);
-    this.handleDetailsClick = this.handleDetailsClick.bind(this); //no idea what this does
+    this.handleDetailsClick = this.handleDetailsClick.bind(this);
+    this.addReview = this.addReview.bind(this); //no idea what this does
 
     this.state = {
       films: TMDB.films,
@@ -40,13 +41,21 @@ class App extends Component {
     this.setState({ faves });
   }
 
-  addReview(film, text){
-    this.setState({
-      films: this.state.films.map(e => (e.title === film.title ? {...e.review, text} : e))
-      
-    })
-    console.log(this.state.films)
+  addReview(film, text) {
+    console.log("film, text", text);
 
+    this.setState((prevState) => {
+      let current = Object.assign({}, prevState.current);
+      current.review = text;
+      console.log("review", current.review);
+      return { current };
+
+      // current: { review: text },
+      // films: this.state.films.map((e) =>
+      //   e.title === film.title ? { ...e.review, text } : e
+      // ),
+    });
+    console.log("current", this.state.current.review);
   }
 
   handleDetailsClick(film) {
@@ -82,6 +91,7 @@ class App extends Component {
           // films={this.state.films}
           film={this.state.current}
           fave_status={this.state.fave_status}
+          add_review={this.addReview}
         ></FilmDetails>
       </div>
       // </div>
@@ -90,4 +100,3 @@ class App extends Component {
 }
 
 export default App;
-

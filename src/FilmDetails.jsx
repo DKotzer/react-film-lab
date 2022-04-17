@@ -10,15 +10,16 @@ export default function FilmDetails(props) {
     const formData = new FormData(e.target),
       formDataObj = Object.fromEntries(formData.entries());
     console.log(formDataObj.reviewInput);
-    props.film.review = formDataObj.reviewInput;
-    console.log("review test", props.film.review);
+    props.add_review(props.film);
+    // props.film.review = formDataObj.reviewInput;
+    console.log("review test", formDataObj.reviewInput);
 
-    setReview(
-      <div className='reviewarea'>
-        <h5>Review:</h5>
-        <p>{props.film.review}</p>
-      </div>
-    );
+    // setReview(
+    //   <div className='reviewarea'>
+    //     <h5>Review:</h5>
+    //     <p>{props.film.review}</p>
+    //   </div>
+    // );
     // review_area = (
     //   <div className='reviewarea'>
     //     <p>{props.film.review}</p>
