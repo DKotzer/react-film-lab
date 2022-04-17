@@ -15,6 +15,7 @@ class App extends Component {
       films: TMDB.films,
       faves: [],
       current: {},
+      fave_status: false,
     };
   }
   handleFaveToggle(film) {
@@ -23,9 +24,18 @@ class App extends Component {
     if (filmIndex >= 0) {
       faves.splice(filmIndex, 1);
       console.log(`Removing ${film.title} from faves`);
+      if (film.title === this.state.current.title) {
+        console.log("detail fave change detected");
+        this.setState({ fave_status: false });
+      }
     } else {
       faves.push(film);
       console.log(`Adding ${film.title} to faves`);
+      console.log(this.state.current.title);
+      if (film.title === this.state.current.title) {
+        console.log("detail fave change detected");
+        this.setState({ fave_status: true });
+      }
     }
     this.setState({ faves });
   }
@@ -39,7 +49,13 @@ class App extends Component {
     }).then((response) => {
       console.log(response); // take a look at what you get back!
       console.log(`Fetching details for ${film.title}`);
-      this.setState( {current: response.data} );
+      if (this.state.faves.includes(film)) {
+        console.log("fave detected");
+        this.setState({ fave_status: true });
+      } else {
+        this.setState({ fave_status: false });
+      }
+      this.setState({ current: response.data });
     });
   }
 
@@ -53,7 +69,11 @@ class App extends Component {
           onFaveToggle={this.handleFaveToggle}
           onDetailToggle={this.handleDetailsClick}
         ></FilmListing>
-        <FilmDetails film={this.state.current}></FilmDetails>
+        <FilmDetails
+          // films={this.state.films}
+          film={this.state.current}
+          fave_status={this.state.fave_status}
+        ></FilmDetails>
       </div>
       // </div>
     );
@@ -62,19 +82,3 @@ class App extends Component {
 
 export default App;
 
-// import React, { Component } from "react";
-// import "./App.css";
-// import FilmDetails from "./FilmDetails";
-// import FilmListing from "./FilmListing";
-// import TMDB from "./TMDB";
-
-// function App() {
-//   return (
-//     <div className='film-library'>
-//       <FilmListing film_list={TMDB.films}></FilmListing>
-//       <FilmDetails film_list={TMDB.films}></FilmDetails>
-//     </div>
-//   );
-// }
-
-// export default App;

@@ -13,13 +13,6 @@ export default class Fave extends Component {
     this.props.onFaveToggle();
   }
 
-  // handleClick(e) {
-  //   this.setState({
-  //     isFave: !this.state.isFave,
-  //   });
-  //   console.log("Handle Click executed");
-  //   e.stopPropagation();
-  // }
 
   render() {
     const isFave = this.props.isFave ? "remove_from_queue" : "add_to_queue";

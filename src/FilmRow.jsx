@@ -4,9 +4,7 @@ import Fave from "./Fave";
 import "./App.css";
 
 export default class FilmRow extends Component {
-  // handleDetailsClick(film) {
-  //   console.log("fetching details for", film);
-  // }
+
 
   handleDetailClick(e) {
     e.stopPropagation();
