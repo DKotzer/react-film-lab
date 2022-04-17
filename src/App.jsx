@@ -40,6 +40,15 @@ class App extends Component {
     this.setState({ faves });
   }
 
+  addReview(film, text){
+    this.setState({
+      films: this.state.films.map(e => (e.title === film.title ? {...e.review, text} : e))
+      
+    })
+    console.log(this.state.films)
+
+  }
+
   handleDetailsClick(film) {
     const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`;
 
